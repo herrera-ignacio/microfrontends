@@ -11,12 +11,15 @@ Notes and experiments on Microfrontends.
     - [Run-Time Integration](#run-time-integration)
       - [Tradeoffs](#tradeoffs-1)
     - [Server Integration](#server-integration)
-  - [Demo](#demo)
+  - [Module Federation](#module-federation)
+    - [Federation Plugin](#federation-plugin)
 
 ## What are microfrontends?
 
 * Divide a _monolithic_ app into multiple, smaller, more manageable parts.
 * Each part is responsible for a distinct feature.
+
+> See [e-commerce demo (w/webpack)](ecommerce-demo)
 
 ## Advantages
 
@@ -67,6 +70,28 @@ __After__ container gets loaded in the browser, it gets access to components sou
 
 While sending down JS to load up the container, a server decides whether or not to include components source code.
 
-## Demo
+## Module Federation
 
-See [e-commerce demo](ecommerce-demo)
+> Read more in [dev.to: Webpack 5 and Module Federation](https://dev.to/marais/webpack-5-and-module-federation-4j1i).
+
+Module Federation aims to solve the sharing of modules in a distributed system, by shipping those critical shared pieces as macro or as micro as you would like. It does this by pulling them out of the the build pipeline and out of your apps.
+
+* __Host__: A host is an artifact that can be loaded cold. Typically, the one that usually initializes from the window.onload event. A host app contains all the typical features from a SPA, or SSR app. It loads all the initial chunks, boots the app and renders what the user will see first.
+
+* __Remote__: A remote can both be a host or strictly a remote. A remote's job is to offer up, or rather expose modules that can be consumed by other Host's and Remote's. You can also opt this remote into having some (or all) of its dependencies shared in the sense of; if the host already has react, just send it into this runtime, allowing the remote to not have to download its own copy of react.
+
+![](2022-05-21-19-03-53.png)
+
+1. Designate one app as the _Host_ (i.e., _Container_) and one as the _Remote_.
+2. In the _Remote_, decide which modules (files) you want to make available to other proejcts.
+3. Set up Module Federation plugin to expose those files.
+4. In the _Host_, decide which files you want to get from the remote.
+5. Set up Module Federation plugin to fetch those files.
+6. In the _Host_, refactor the entry point to load asynchronously.
+7. In the _Host_, import whatever files you need from the remote.
+
+### Federation Plugin
+
+Loading in a remote will only download the code needed to power that component, and NONE of the shared modules.
+
+What this will allow you to do in practice is have each one of your MFE's expose its route-map, typically the component fragment that you'd give to `react-router`.
