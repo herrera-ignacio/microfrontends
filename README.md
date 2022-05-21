@@ -11,6 +11,7 @@ Notes and experiments on Microfrontends.
     - [Run-Time Integration](#run-time-integration)
       - [Tradeoffs](#tradeoffs-1)
     - [Server Integration](#server-integration)
+  - [Demo](#demo)
 
 ## What are microfrontends?
 
@@ -65,3 +66,7 @@ __After__ container gets loaded in the browser, it gets access to components sou
 ### Server Integration
 
 While sending down JS to load up the container, a server decides whether or not to include components source code.
+
+## Demo
+
+See [e-commerce demo](ecommerce-demo)
