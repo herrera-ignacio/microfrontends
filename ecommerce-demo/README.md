@@ -1,5 +1,10 @@
 # E-Commerce Demo
 
+## How to Run
+
+1. `cd products && yarn dev`.
+1. `cd container && yarn dev`.
+
 ## Project Structure
 
 * Container
