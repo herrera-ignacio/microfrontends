@@ -1,7 +1,20 @@
 import { faker } from '@faker-js/faker';
 
-console.log("[INFO] From Cart!");
+const mountCart = (elem) => {
+  console.log("[INFO] Mounting cart...");
 
-const cartText = `<div>You have ${faker.datatype.number(10)} items in your cart</div>`;
+  if (elem) {
+    const cartText = `<div>You have ${faker.datatype.number(10)} items in your cart</div>`;
+    elem.innerHTML = cartText;
+  }
+};
 
-document.querySelector('#dev-cart').innerHTML = cartText;
+if (process.env.NODE_ENV === 'development') {
+  const devElem = document.querySelector('#dev-cart');
+  
+  if (devElem) {
+    mountCart(devElem);
+  }
+}
+
+export { mountCart };
