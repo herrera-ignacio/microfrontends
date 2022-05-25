@@ -3,13 +3,13 @@
   "scripts": {
     "dev": "webpack serve"
   },
+  "dependencies": {
+    "@faker-js/faker": "7.0.1"
+  },
   "devDependencies": {
     "html-webpack-plugin": "^5.5.0",
     "webpack": "^5.72.1",
     "webpack-cli": "^4.9.2",
     "webpack-dev-server": "^4.9.0"
-  },
-  "dependencies": {
-    "@faker-js/faker": "^6.3.1"
   }
 }

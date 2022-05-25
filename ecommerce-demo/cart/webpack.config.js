@@ -13,7 +13,7 @@ module.exports = {
       exposes: {
         './CartShow': './src/index.js',
       },
-      shared: ['faker'],
+      shared: ['@faker-js/faker'],
     }),
     new HtmlWebpackPlugin({
       template: './public/index.html',
