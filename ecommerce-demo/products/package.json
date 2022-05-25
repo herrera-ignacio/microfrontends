@@ -1,4 +1,5 @@
 {
+  "name": "products",
   "scripts": {
     "dev": "webpack serve"
   },

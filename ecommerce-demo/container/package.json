@@ -1,4 +1,5 @@
 {
+  "name": "ecommerce_container",
   "scripts": {
     "dev": "webpack serve"
   },
