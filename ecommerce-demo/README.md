@@ -3,7 +3,10 @@
 ## How to Run
 
 1. `cd products && yarn dev`.
-1. `cd container && yarn dev`.
+2. `cd cart && yarn dev`.
+3. `cd container && yarn dev`.
+
+You can make changes to any of the projects and will hot reload, except for modifications to the webpack config file.
 
 ## Project Structure
 

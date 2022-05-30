@@ -4,7 +4,9 @@ Notes and experiments on Microfrontends.
 
 - [Microfrontends](#microfrontends)
   - [What are microfrontends?](#what-are-microfrontends)
+  - [Demos](#demos)
   - [Advantages](#advantages)
+  - [Requirements](#requirements)
   - [Integration](#integration)
     - [Compile-Time Integration](#compile-time-integration)
       - [Tradeoffs](#tradeoffs)
@@ -19,7 +21,10 @@ Notes and experiments on Microfrontends.
 * Divide a _monolithic_ app into multiple, smaller, more manageable parts.
 * Each part is responsible for a distinct feature.
 
-> See [e-commerce demo (w/webpack)](ecommerce-demo)
+## Demos
+
+1. [Simple module federation: products + cart](ecommerce-demo)
+2. [Linking apps: React + Vue](mfp-demo)
 
 ## Advantages
 
@@ -28,6 +33,19 @@ Notes and experiments on Microfrontends.
   * Each smaller part is easier to understand and make changes to.
 * __Time to Market__: Features can be delivered isolately.
 * __Ownership__: Enforces a clear separation of responsibilities.
+
+## Requirements
+
+1. Zero coupling between child projects.
+   1. No importing of functions/objects/classes/etc.
+   2. No shared state.
+   3. Shared libraries through MF is ok.
+2. Near-zero coupling between container and child apps.
+   1. Container shouldn't assume that a child is using a particular framework.
+   2. Any necessary communication is done with callbacks or simple events.
+3. CSS from one project shouldn't affect another.
+4. Version control (monorepo vs separate) shouldn't have any impact on the overall project.
+5. Container should be able to decide to always use the latest version of a microfrontend _or_ specifiy version.
 
 ## Integration
 
