@@ -21,6 +21,13 @@ Notes and experiments on Microfrontends.
       - [Problem: Sharing style libraries](#problem-sharing-style-libraries)
       - [Solutions](#solutions)
     - [Infrastructure & CI/CD](#infrastructure--cicd)
+  - [Routing: Multi-Tier Navigation](#routing-multi-tier-navigation)
+    - [Problems](#problems)
+  - [Solutions](#solutions-1)
+    - [Routing Featres](#routing-featres)
+    - [Support two or more MFE](#support-two-or-more-mfe)
+    - [Communication between apps](#communication-between-apps)
+      - [Communicating through callbacks](#communicating-through-callbacks)
 
 ## What are microfrontends?
 
@@ -147,3 +154,49 @@ What this will allow you to do in practice is have each one of your MFE's expose
 ![](2022-05-31-21-32-19.png)
 
 ![](2022-05-31-21-31-39.png)
+
+## Routing: Multi-Tier Navigation
+
+### Problems
+
+1. **Both the container and subapps (i.e., microfrontends) need routing features.**
+   1. Users can navigate around to different subapps using routing logic built into the Container.
+   1. Users can navigate around _in_ a subapp using routing logic built into the microfrontend itself.
+   2. Not all subapps will require routing.
+3. **Subapps might need to add in new pages/routes all the time.**
+   1. Should not require a redeploy of the container.
+4. **Might need to show two or more microfrontends at the same time**.
+   1. This will occur all the time if we have some kind of sidebar nav that is built as a separate microfrontend.
+5. **We want to use off-the-shelf routing solutions**.
+   1. Some amount of custom coding is ok.
+6. **If different apps need to communicate information about routing, it should be done in as generic a fashion as possible**.
+   1. Each app might be using a completely different navigation framework.
+   2. We might swap out or upgrade navigation libraries all the time, shouldn't require a rewrite of the rest of the app.
+
+![](2022-05-31-21-40-44.png)
+
+## Solutions
+
+### Routing Featres
+
+![](2022-05-31-23-19-47.png)
+
+![](2022-05-31-23-20-17.png)
+
+### Support two or more MFE
+
+![](2022-05-31-23-22-12.png)
+
+![](2022-05-31-23-52-24.png)
+
+### Communication between apps
+
+![](2022-05-31-23-53-52.png)
+
+> Container Router is based on browser history while Marketing Router is based on memory routing. Therefore, pressing a link inside the marketing router will update "in memory" Marketing Router without affecting the browser history used by Container Router.
+
+![](2022-05-31-23-55-50.png)
+
+#### Communicating through callbacks
+
+![](2022-06-01-00-00-36.png)
