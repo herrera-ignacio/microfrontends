@@ -13,8 +13,14 @@ Notes and experiments on Microfrontends.
     - [Run-Time Integration](#run-time-integration)
       - [Tradeoffs](#tradeoffs-1)
     - [Server Integration](#server-integration)
-  - [Module Federation](#module-federation)
+  - [Technical Details](#technical-details)
+    - [Module Federation](#module-federation)
     - [Federation Plugin](#federation-plugin)
+    - [Sharing CSS](#sharing-css)
+      - [Problem: Style collisions](#problem-style-collisions)
+      - [Problem: Sharing style libraries](#problem-sharing-style-libraries)
+      - [Solutions](#solutions)
+    - [Infrastructure & CI/CD](#infrastructure--cicd)
 
 ## What are microfrontends?
 
@@ -24,7 +30,7 @@ Notes and experiments on Microfrontends.
 ## Demos
 
 1. [Simple module federation: products + cart](ecommerce-demo)
-2. [Linking apps: React + Vue](mfp-demo)
+2. [Microfrontends: 4 apps w/different tech stacks](mfp-demo)
 
 ## Advantages
 
@@ -88,7 +94,9 @@ __After__ container gets loaded in the browser, it gets access to components sou
 
 While sending down JS to load up the container, a server decides whether or not to include components source code.
 
-## Module Federation
+## Technical Details
+
+### Module Federation
 
 > Read more in [dev.to: Webpack 5 and Module Federation](https://dev.to/marais/webpack-5-and-module-federation-4j1i).
 
@@ -113,3 +121,29 @@ Module Federation aims to solve the sharing of modules in a distributed system, 
 Loading in a remote will only download the code needed to power that component, and NONE of the shared modules.
 
 What this will allow you to do in practice is have each one of your MFE's expose its route-map, typically the component fragment that you'd give to `react-router`.
+
+### Sharing CSS
+
+#### Problem: Style collisions
+
+![](2022-05-31-21-27-18.png)
+
+#### Problem: Sharing style libraries
+
+![](2022-05-31-21-29-48.png)
+
+#### Solutions
+
+1. Custom CSS:
+   1. Use CSS-in-JS library.
+   2. Use built-in framewrok component style scoping.
+   3. Use namespaces for all your CSS.
+2. CSS from a library:
+   1. Use a component librar that doess css-in-js (e.g., MaterialUI, styled-components).
+   2. Manually build the CSS library and apply namespacing techniques to it.
+
+### Infrastructure & CI/CD
+
+![](2022-05-31-21-32-19.png)
+
+![](2022-05-31-21-31-39.png)
