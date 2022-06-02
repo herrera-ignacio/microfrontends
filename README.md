@@ -46,6 +46,8 @@ Notes and experiments on Microfrontends.
   * Each smaller part is easier to understand and make changes to.
 * __Time to Market__: Features can be delivered isolately.
 * __Ownership__: Enforces a clear separation of responsibilities.
+* __Address technical debt__: Each part can be improved independently without affecting the others (i.e., core library versions, code refactoring, etc).
+* __Performance__: Each part can be optimized independently. Microfrontends' code can be lazy loaded. 
 
 ## Requirements
 
