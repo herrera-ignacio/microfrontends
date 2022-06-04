@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { mount } from 'auth/AuthApp';
 import { useHistory } from 'react-router-dom';
 
-export default () => {
+export default ({ onSignIn }) => {
   const ref = useRef(null);
   const history = useHistory();
 
@@ -21,6 +21,10 @@ export default () => {
           history.push(subappPathname);
         }
       },
+
+      onSignIn: () => {
+        onSignIn();
+      }
     });
 
     // Communicate container's navigation to subapps.

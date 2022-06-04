@@ -28,6 +28,7 @@ Notes and experiments on Microfrontends.
     - [Support two or more MFE](#support-two-or-more-mfe)
     - [Communication between apps](#communication-between-apps)
       - [Communicating through callbacks](#communicating-through-callbacks)
+  - [Authentication](#authentication)
 
 ## What are microfrontends?
 
@@ -202,3 +203,12 @@ What this will allow you to do in practice is have each one of your MFE's expose
 #### Communicating through callbacks
 
 ![](2022-06-01-00-00-36.png)
+
+## Authentication
+
+Two approaches:
+
+1. Each app is aware of auth.
+2. Centralize auth in Container.
+
+![](2022-06-03-23-49-12.png)
